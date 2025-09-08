@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.Model
 {
-    class ChatMember
+    public class ChatMember
     {
     }
 }

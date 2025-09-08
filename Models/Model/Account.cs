@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.Model
 {
-    class Account
+    public class Account
     {
     }
 }
