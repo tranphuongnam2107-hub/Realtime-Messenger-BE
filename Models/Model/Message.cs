@@ -1,12 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Models.Model
 {
     public class Message
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string MessageId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        [Required]
+        public string ChatId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        [Required]
+        public string SenderId { get; set; }
+        [Required]
+        public string Type { get; set; }
+        public string? TextMessage { get; set; }
+        public List<string>? Images { get; set; }
+        public List<string>? Files { get; set; }
+        public DateTime CreatedAt { get; set; }
+        [Required]
+        public string Status { get; set; }
     }
 }
