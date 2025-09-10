@@ -1,7 +1,32 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\models\\model\\chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|solutionrelative:models\\model\\chat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\models\\model\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|solutionrelative:models\\model\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\models\\model\\friend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|solutionrelative:models\\model\\friend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\models\\model\\chatmember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|solutionrelative:models\\model\\chatmember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\models\\model\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|solutionrelative:models\\model\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\models\\model\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|solutionrelative:models\\model\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +34,89 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Message.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\Message.cs",
+              "RelativeDocumentMoniker": "Models\\Model\\Message.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\Message.cs",
+              "RelativeToolTip": "Models\\Model\\Message.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T13:09:52.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Friend.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\Friend.cs",
+              "RelativeDocumentMoniker": "Models\\Model\\Friend.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\Friend.cs",
+              "RelativeToolTip": "Models\\Model\\Friend.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T13:09:51.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ChatMember.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\ChatMember.cs",
+              "RelativeDocumentMoniker": "Models\\Model\\ChatMember.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\ChatMember.cs",
+              "RelativeToolTip": "Models\\Model\\ChatMember.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T13:09:50.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Chat.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\Chat.cs",
+              "RelativeDocumentMoniker": "Models\\Model\\Chat.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\Chat.cs",
+              "RelativeToolTip": "Models\\Model\\Chat.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T13:09:48.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Account.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\Account.cs",
+              "RelativeDocumentMoniker": "Models\\Model\\Account.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\Account.cs",
+              "RelativeToolTip": "Models\\Model\\Account.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T13:09:30.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Role.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\Role.cs",
+              "RelativeDocumentMoniker": "Models\\Model\\Role.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\Role.cs",
+              "RelativeToolTip": "Models\\Model\\Role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-09T13:09:26.613Z",
+              "EditorCaption": ""
             }
           ]
         }
