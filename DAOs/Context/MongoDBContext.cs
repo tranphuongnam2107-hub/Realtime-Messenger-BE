@@ -13,6 +13,9 @@ namespace DataAccess.Context
 
         public MongoDBContext(MongoDBSetting setting)
         {
+            if (setting == null)
+                throw new ArgumentNullException(nameof(setting));
+
             var client = new MongoClient(setting.ConnectionString);
             Database = client.GetDatabase(setting.DatabaseName);
         }
