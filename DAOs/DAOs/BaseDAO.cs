@@ -16,15 +16,5 @@ namespace DataAccess.DAOs
         {
             _collection = context.GetCollection<T>(collectionName);
         }
-
-        public virtual async Task<List<T>> GetAllAsync()
-        {
-            return await _collection.Find(_ => true).ToListAsync();
-        }
-
-        public virtual async Task<T?> GetByIdAsync(string id)
-        {
-            return await _collection.Find(Builders<T>.Filter.Eq("_id", id)).FirstOrDefaultAsync();
-        }
     }
 }
