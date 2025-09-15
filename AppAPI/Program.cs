@@ -8,6 +8,8 @@ using Models.Mapper;
 using MongoDB.Driver;
 using Repositories.Implement;
 using Repositories.Interface;
+using Services.Config.CloudinaryConfig;
+using Services.Hubs;
 using Services.Implement;
 using Services.Interface;
 using Services.PaswordHashing;
@@ -34,14 +36,27 @@ builder.Services.AddScoped<PasswordHasher>();
 
 builder.Services.AddScoped<AccountDAO>();
 builder.Services.AddScoped<RoleDAO>();
+builder.Services.AddScoped<ChatDAO>();
+builder.Services.AddScoped<MessageDAO>();
 
 
 //REPOSITORY DI
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IChatRepository, ChatRepository>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 
 //SERVICE DI
+builder.Services.AddScoped<CloudinaryHelper>();
+builder.Services.AddScoped<IUploadService, UploadService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<IMessageService, MessageService>();
+
+//CẤU HÌNH CLOUDINARY
+builder.Services.Configure<CloudinarySetting>(
+    builder.Configuration.GetSection("CloudinarySettings")
+);
+builder.Services.AddSingleton<CloudinaryConnection>();
 
 // Cấu hình CORS nếu cần (cho phép client kết nối SignalR)
 builder.Services.AddCors(options =>
@@ -160,4 +175,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapHub<ChatHub>("/hubs/chat");
 app.Run();
