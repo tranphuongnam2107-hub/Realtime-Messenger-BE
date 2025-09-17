@@ -1,9 +1,6 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\",
-<<<<<<< HEAD
-  "Documents": [],
-=======
   "Documents": [
     {
       "AbsoluteMoniker": "D:0:0:{BD099222-BE27-4D7A-ACB0-11C6EEF09A65}|AppAPI\\AppAPI.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\appapi\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,7 +19,6 @@
       "RelativeMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|solutionrelative:services\\interface\\imessageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
->>>>>>> main
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -30,13 +26,11 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-<<<<<<< HEAD
-=======
             },
             {
               "$type": "Document",
@@ -46,7 +40,7 @@
               "RelativeDocumentMoniker": "AppAPI\\Controllers\\ChatController.cs",
               "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\AppAPI\\Controllers\\ChatController.cs",
               "RelativeToolTip": "AppAPI\\Controllers\\ChatController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAowBcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowA0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-15T13:06:00.554Z",
               "EditorCaption": ""
@@ -61,8 +55,7 @@
               "RelativeToolTip": "Services\\Interface\\IMessageService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-15T12:52:38.878Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-15T12:52:38.878Z"
             },
             {
               "$type": "Document",
@@ -74,8 +67,7 @@
               "RelativeToolTip": "Services\\Hubs\\ChatHub.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAACIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-15T12:47:12.888Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-15T12:47:12.888Z"
             },
             {
               "$type": "Document",
@@ -87,9 +79,7 @@
               "RelativeToolTip": "Services\\Implement\\MessageService.cs",
               "ViewState": "AgIAAFEAAAAAAAAAAAAcwHQAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-15T12:30:32.547Z",
-              "EditorCaption": ""
->>>>>>> main
+              "WhenOpened": "2025-09-15T12:30:32.547Z"
             }
           ]
         },
