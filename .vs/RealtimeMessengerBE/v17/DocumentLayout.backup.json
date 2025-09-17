@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\models\\model\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8E718FE7-3344-4100-AE93-68E23FB76B12}|Models\\Models.csproj|solutionrelative:models\\model\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD099222-BE27-4D7A-ACB0-11C6EEF09A65}|AppAPI\\AppAPI.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\appapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD099222-BE27-4D7A-ACB0-11C6EEF09A65}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BD099222-BE27-4D7A-ACB0-11C6EEF09A65}|AppAPI\\AppAPI.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\appapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{BD099222-BE27-4D7A-ACB0-11C6EEF09A65}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{607264FC-0105-47DD-B0A2-2643AC2127FC}|DAOs\\DataAccess.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\daos\\context\\mongodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{607264FC-0105-47DD-B0A2-2643AC2127FC}|DAOs\\DataAccess.csproj|solutionrelative:daos\\context\\mongodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\services\\implement\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|solutionrelative:services\\implement\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -30,76 +9,11 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Account.cs",
-              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\Account.cs",
-              "RelativeDocumentMoniker": "Models\\Model\\Account.cs",
-              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Models\\Model\\Account.cs",
-              "RelativeToolTip": "Models\\Model\\Account.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAxwCEAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:52:39.252Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\AppAPI\\appsettings.json",
-              "RelativeDocumentMoniker": "AppAPI\\appsettings.json",
-              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\AppAPI\\appsettings.json",
-              "RelativeToolTip": "AppAPI\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-13T13:50:23.809Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MongoDBContext.cs",
-              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\DAOs\\Context\\MongoDBContext.cs",
-              "RelativeDocumentMoniker": "DAOs\\Context\\MongoDBContext.cs",
-              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\DAOs\\Context\\MongoDBContext.cs",
-              "RelativeToolTip": "DAOs\\Context\\MongoDBContext.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAADgvxQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:48:49.763Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\AppAPI\\Program.cs",
-              "RelativeDocumentMoniker": "AppAPI\\Program.cs",
-              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\AppAPI\\Program.cs",
-              "RelativeToolTip": "AppAPI\\Program.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAADgvxEAAABfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T13:41:46.038Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AuthenticationService.cs",
-              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Services\\Implement\\AuthenticationService.cs",
-              "RelativeDocumentMoniker": "Services\\Implement\\AuthenticationService.cs",
-              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Services\\Implement\\AuthenticationService.cs",
-              "RelativeToolTip": "Services\\Implement\\AuthenticationService.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAvwBcAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T11:10:43.344Z",
-              "EditorCaption": ""
             }
           ]
         },
