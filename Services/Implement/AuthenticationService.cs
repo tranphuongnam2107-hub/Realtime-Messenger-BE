@@ -16,6 +16,8 @@ using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
+using Services.Config.JwtConfig;
+using Microsoft.Extensions.Options;
 
 namespace Services.Implement
 {
@@ -25,20 +27,20 @@ namespace Services.Implement
         private readonly IRoleRepository _roleRepository;
         private readonly PasswordHasher _hasher;
         private readonly IMapper _mapper;
-        private readonly IConfiguration _configuration;
+        private readonly JwtSetting _jwtSetting;
 
-        public AuthenticationService(IAccountRepository accountRepository, PasswordHasher hasher, IMapper mapper, IConfiguration configuration, IRoleRepository roleRepository)
+        public AuthenticationService(IAccountRepository accountRepository, PasswordHasher hasher, IMapper mapper, IRoleRepository roleRepository, IOptions<JwtSetting> jwtSettings)
         {
             _accountRepository = accountRepository;
             _hasher = hasher;
             _mapper = mapper;
-            _configuration = configuration;
             _roleRepository = roleRepository;
+            _jwtSetting = jwtSettings.Value;
         }
 
         public async Task<BaseResponseDTO<LoginResponseDTO>?> Login(LoginRequestDTO request)
         {
-            if(request.Identifier == null || request.Password == null)
+            if (request.Identifier == null || request.Password == null)
                 return BaseResponseDTO<LoginResponseDTO>.Fail("Request is invalid.", null, null, 400);
 
             var account = await _accountRepository.GetAccountByIdentifier(request.Identifier);
@@ -67,7 +69,7 @@ namespace Services.Implement
                     var loginResponseDto = _mapper.Map<LoginResponseDTO>(accAfterLock);
 
                     return BaseResponseDTO<LoginResponseDTO>.Fail("Your username or password is incorrect.", loginResponseDto, null, 401);
-                    
+
                 }
                 else
                 {
@@ -89,41 +91,49 @@ namespace Services.Implement
 
         private async Task<BaseResponseDTO<LoginResponseDTO>> GenerateToken(Account account)
         {
-            var issuer = _configuration["JwtSettings:Issuer"];
-            var audience = _configuration["JwtSettings:Audience"];
-            var key = Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]!);
-            var tokenValidityMins = _configuration.GetValue<int>("JwtSettings:TokenValidMins");
-            var tokenExpiryTimeStamp = DateTime.UtcNow.AddMinutes(tokenValidityMins);
+            // Tính thời gian hết hạn token
+            var tokenExpiryTimeStamp = DateTime.UtcNow.AddMinutes(_jwtSetting.TokenValidMins);
 
+            // Lấy role từ DB
             var role = await _roleRepository.GetRoleById(account.RoleId);
 
+            // Nếu không tìm thấy role -> set mặc định
             if (role == null)
             {
                 role = new Role
                 {
-                    RoleId = "68c54b43d124de3e61199acb", // RoleId mặc định nếu không tìm thấy
-                    RoleName = "USER",              
-                    RoleDescription = "user"
+                    RoleId = "68c54b43d124de3e61199acb",
+                    RoleName = "USER",
+                    RoleDescription = "Default user role"
                 };
             }
 
+            // Tạo danh sách claims
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, account.AccountId),
+                new Claim(JwtRegisteredClaimNames.Email, account.Email),
+                new Claim("AccId", account.AccountId),
+                new Claim("RoleId", account.RoleId),
+                new Claim(ClaimTypes.Role, role.RoleName)
+            };
+
+            // Tạo signing credentials
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSetting.SecretKey));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            // Tạo JWT token
             var token = new JwtSecurityToken(
-                issuer,
-                audience,
-                claims: new List<Claim>
-                {
-                    new Claim(JwtRegisteredClaimNames.Name, account.AccountId),
-                    new Claim(ClaimTypes.Email, account.Email),
-                    new Claim("AccId", account.AccountId),
-                    new Claim("RoleId", account.RoleId),
-                    new Claim(ClaimTypes.Role, role.RoleName) // Sử dụng tên vai trò trong token
-                },
+                issuer: _jwtSetting.Issuer,
+                audience: _jwtSetting.Audience,
+                claims: claims,
                 expires: tokenExpiryTimeStamp,
-                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                signingCredentials: creds
             );
 
             var accessToken = new JwtSecurityTokenHandler().WriteToken(token);
 
+            // Mapping sang DTO trả về
             var loginResponseDto = _mapper.Map<LoginResponseDTO>(account);
             loginResponseDto.AccessToken = accessToken;
             loginResponseDto.RefreshToken = await GenerateRefreshToken(account);
@@ -131,9 +141,10 @@ namespace Services.Implement
             return BaseResponseDTO<LoginResponseDTO>.Success("Login successfully.", loginResponseDto, 200);
         }
 
+
         private async Task<string?> GenerateRefreshToken(Account account)
         {
-            var refreshTokenValidMins = _configuration.GetValue<int>("JwtSettings:RefreshTokenValidMins");
+            var refreshTokenValidMins = _jwtSetting.RefreshTokenValidMins;
 
             if (account == null) return null;
 

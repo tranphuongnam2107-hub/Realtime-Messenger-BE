@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using DataAccess.Context;
 using DataAccess.DAOs;
+using DotNetEnv;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -9,6 +10,7 @@ using MongoDB.Driver;
 using Repositories.Implement;
 using Repositories.Interface;
 using Services.Config.CloudinaryConfig;
+using Services.Config.JwtConfig;
 using Services.Hubs;
 using Services.Implement;
 using Services.Interface;
@@ -16,8 +18,22 @@ using Services.PaswordHashing;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//Load .env
+Env.Load();
+
+// Thêm json + environment variables vào configuration
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables(); // .env đã được load => sẽ được đọc ở đây
+
+// Bind config: register strongly-typed settings
 builder.Services.Configure<MongoDBSetting>(builder.Configuration.GetSection("MongoDBSetting"));
+builder.Services.Configure<JwtSetting>(builder.Configuration.GetSection("JwtSettings"));
+builder.Services.Configure<CloudinarySetting>(builder.Configuration.GetSection("CloudinarySettings"));
+
+
+// Add services to the container.
 
 builder.Services.AddSingleton(sp =>
     sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<MongoDBSetting>>().Value
@@ -53,9 +69,6 @@ builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IMessageService, MessageService>();
 
 //CẤU HÌNH CLOUDINARY
-builder.Services.Configure<CloudinarySetting>(
-    builder.Configuration.GetSection("CloudinarySettings")
-);
 builder.Services.AddSingleton<CloudinaryConnection>();
 
 // Cấu hình CORS nếu cần (cho phép client kết nối SignalR)
@@ -77,16 +90,17 @@ builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 
 //SECURITY
-var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-var secretKey = Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]!);
+var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSetting>();
+var secretKey = Encoding.UTF8.GetBytes(jwtSettings.SecretKey);
+
 var tokenValidationParameters = new TokenValidationParameters
 {
     ValidateIssuer = true,
     ValidateAudience = true,
     ValidateLifetime = true,
     ValidateIssuerSigningKey = true,
-    ValidIssuer = jwtSettings["Issuer"],
-    ValidAudience = jwtSettings["Audience"],
+    ValidIssuer = jwtSettings.Issuer,
+    ValidAudience = jwtSettings.Audience,
     IssuerSigningKey = new SymmetricSecurityKey(secretKey),
     ClockSkew = TimeSpan.Zero
 };

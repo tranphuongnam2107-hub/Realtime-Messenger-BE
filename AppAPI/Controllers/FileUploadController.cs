@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models.Model;
 using Services.Config.CloudinaryConfig;
 using Services.Interface;
 
@@ -24,7 +25,7 @@ namespace AppAPI.Controllers
             if (files == null || !files.Any())
                 return BadRequest(new { message = "Please select at least a file." });
 
-            var uploadedUrls = new List<string>();
+            var uploadedUrls = new List<FileMetadata>();
 
             try
             {

@@ -11,5 +11,6 @@ namespace Repositories.Interface
     {
         Task CreateMessageAsync(Message message);
         Task<List<Message>> GetMessagesByChatIdAsync(string chatId, int pageSize = 5, string? lastMessageId = null);
+        Task<Message> GetMessageByIdAsync(string? messageId);
     }
 }

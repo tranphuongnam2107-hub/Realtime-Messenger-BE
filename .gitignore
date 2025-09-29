@@ -52,3 +52,115 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+
+
+## =========================================
+## Build folders
+## =========================================
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+artifacts/
+bld/
+
+## Debug & Release
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Ww][Ii][Nn]32/
+
+## =========================================
+## Environment files
+## =========================================
+# File chứa secret và config local
+.env
+.env.*
+
+# Example file (có thể commit để team tham khảo)
+!*.env.example
+
+## =========================================
+## Visual Studio / Rider specific
+## =========================================
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.DotSettings
+
+## =========================================
+## NuGet packages
+## =========================================
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# Auto-generated NuGet restore results
+*.nuget.props
+*.nuget.targets
+
+## =========================================
+## Logs & crash reports
+## =========================================
+*.log
+*.tlog
+*.vspscc
+*.vsp
+*.vsix
+*.pidb
+*.svclog
+
+## =========================================
+## Test results
+## =========================================
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.coverage
+*.coveragexml
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+## =========================================
+## Backup / Temp
+## =========================================
+*~
+~$*
+*.tmp
+*.temp
+*.bak
+*.swp
+
+## =========================================
+## Resharper & Rider cache
+## =========================================
+_ReSharper*/
+*.DotSettings.user
+
+## =========================================
+## Entity Framework / Migrations
+## =========================================
+# Migrations script generated temporarily
+Migrations/
+
+## =========================================
+## Miscellaneous
+## =========================================
+# Local publish profiles
+Properties/PublishProfiles/
+
+# Azure local config
+*.azurePubxml

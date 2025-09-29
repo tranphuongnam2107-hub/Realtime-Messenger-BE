@@ -23,10 +23,12 @@ namespace Models.Model
         [Required]
         public string Type { get; set; }
         public string? TextMessage { get; set; }
-        public List<string>? Images { get; set; }
-        public List<string>? Files { get; set; }
+        public List<FileMetadata>? Images { get; set; }
+        public List<FileMetadata>? Files { get; set; }
         public DateTime CreatedAt { get; set; }
         [Required]
         public string Status { get; set; }
+
+        public string? ReplyToMessageId { get; set; }
     }
 }

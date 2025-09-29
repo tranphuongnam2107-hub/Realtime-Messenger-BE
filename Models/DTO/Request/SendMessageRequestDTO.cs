@@ -14,5 +14,8 @@ namespace Models.DTO.Request
         public string? TextMessage { get; set; }
         public List<IFormFile>? Images { get; set; }
         public List<IFormFile>? Files { get; set; }
+
+        //Field cho lúc reply
+        public string? ReplyToMessageId { get; set; }
     }
 }
