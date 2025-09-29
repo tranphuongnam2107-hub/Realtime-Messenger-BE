@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Http;
+using Models.Model;
 using Services.Config.CloudinaryConfig;
 using Services.Interface;
 using ResourceType = CloudinaryDotNet.Actions.ResourceType;
@@ -44,7 +45,7 @@ namespace Services.Implement
             return result.Result == "ok";
         }
 
-        public async Task<string> UploadAsync(IFormFile file, string folderName)
+        public async Task<FileMetadata> UploadAsync(IFormFile file, string folderName)
         {
             if (file == null || file.Length == 0)
                 throw new ArgumentException("File is invalid.");
@@ -62,7 +63,13 @@ namespace Services.Implement
 
                 var uploadResult = await _cloudinary.UploadAsync(uploadParams);
                 if (uploadResult.StatusCode == System.Net.HttpStatusCode.OK)
-                    return uploadResult.SecureUrl.ToString();
+                    return new FileMetadata
+                    {
+                        FileName = file.FileName,
+                        FileUrl = uploadResult.SecureUrl.ToString(),
+                        Size = file.Length,
+                        ContentType = file.ContentType
+                    };
 
                 throw new Exception("Upload fail: " + uploadResult.Error?.Message);
             }
@@ -76,7 +83,13 @@ namespace Services.Implement
 
                 var uploadResult = await _cloudinary.UploadAsync(uploadParams);
                 if (uploadResult.StatusCode == System.Net.HttpStatusCode.OK)
-                    return uploadResult.SecureUrl.ToString();
+                    return new FileMetadata
+                    {
+                        FileName = file.FileName,
+                        FileUrl = uploadResult.SecureUrl.ToString(),
+                        Size = file.Length,
+                        ContentType = file.ContentType ?? "application/octet-stream"
+                    };
 
                 throw new Exception("Upload file fail: " + uploadResult.Error?.Message);
             }
