@@ -112,8 +112,8 @@ namespace Services.Implement
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, account.AccountId),
-                new Claim(JwtRegisteredClaimNames.Email, account.Email),
-                new Claim("AccId", account.AccountId),
+                new Claim(ClaimTypes.Email, account.Email),
+                new Claim(ClaimTypes.MobilePhone, account.PhoneNumber),
                 new Claim("RoleId", account.RoleId),
                 new Claim(ClaimTypes.Role, role.RoleName)
             };

@@ -14,6 +14,13 @@ namespace Models.Mapper
         public BaseMapper()
         {
             CreateMap<Account, LoginResponseDTO>();
+            CreateMap<Message, MessageResponseDTO>()
+                .ForMember(mess => mess.SenderInfor, opt => opt.Ignore())
+                .ForMember(mess => mess.ReplyToMessage, opt => opt.Ignore())
+                .ForMember(dest => dest.IsMine,
+                    opt => opt.MapFrom((src, dest, _, ctx) =>
+                        ctx.Items.ContainsKey("CurrentUserId") &&
+                        ctx.Items["CurrentUserId"].ToString() == src.SenderId));
         }
 
     }

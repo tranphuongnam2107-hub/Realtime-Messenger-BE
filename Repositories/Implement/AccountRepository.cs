@@ -23,6 +23,11 @@ namespace Repositories.Implement
             return await _accountDao.GetAccountByIdentify(identifier);
         }
 
+        public async Task<List<Account>?> GetAccountsByIdentifier(List<string>? accountIds)
+        {
+            return await _accountDao.GetAccountsByIdentifiersAsync(accountIds);
+        }
+
         public async Task<Account?> UpdateLoginFail(string accId, int? failAttempts, DateTime? lockedUntil)
         {
             return await _accountDao.UpdateLoginFailAsync(accId, failAttempts, lockedUntil);
