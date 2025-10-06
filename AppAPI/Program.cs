@@ -67,6 +67,8 @@ builder.Services.AddScoped<CloudinaryHelper>();
 builder.Services.AddScoped<IUploadService, UploadService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IMessageService, MessageService>();
+builder.Services.AddScoped<IChatService, ChatService>();
+builder.Services.AddScoped<IUserContextService, UserContextService>();
 
 //CẤU HÌNH CLOUDINARY
 builder.Services.AddSingleton<CloudinaryConnection>();

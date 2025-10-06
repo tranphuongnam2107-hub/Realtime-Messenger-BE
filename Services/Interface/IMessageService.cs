@@ -13,6 +13,6 @@ namespace Services.Interface
     public interface IMessageService
     {
         Task<BaseResponseDTO<MessageResponseDTO>> SendMessageAsync(SendMessageRequestDTO request, string accId);
-        Task<List<Message>> GetMessagesAsync(string chatId, int pageSize = 5, string? lastMessageId = null);
+        Task<BaseResponseDTO<List<MessageResponseDTO>>> GetMessagesAsync(string chatId, int pageSize = 5, string? lastMessageId = null);
     }
 }

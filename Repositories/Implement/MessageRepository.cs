@@ -23,14 +23,19 @@ namespace Repositories.Implement
             await _messageDao.CreateMessageAsync(message);
         }
 
-        public Task<Message> GetMessageByIdAsync(string? messageId)
+        public async Task<Message?> GetMessageByIdAsync(string? messageId)
         {
-            throw new NotImplementedException();
+            return await _messageDao.GetMessageByIdsAsync(messageId);
         }
 
         public async Task<List<Message>> GetMessagesByChatIdAsync(string chatId, int pageSize = 5, string? lastMessageId = null)
         {
             return await _messageDao.GetMessagesByChatIdAsync(chatId, pageSize, lastMessageId);
+        }
+
+        public async Task<List<Message>?> GetMessagesByIdAsync(List<string>? messageIds)
+        {
+            return await _messageDao.GetMessagesByIdsAsync(messageIds);
         }
     }
 }

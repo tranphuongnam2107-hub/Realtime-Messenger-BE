@@ -76,5 +76,14 @@ namespace DataAccess.DAOs
                 }
             );
         }
+
+        public async Task<List<Account>> GetAccountsByIdentifiersAsync(List<string>? accountIds)
+        {
+            if (accountIds == null || !accountIds.Any())
+                return new List<Account>();
+
+            var filter = Builders<Account>.Filter.In(a => a.AccountId, accountIds);
+            return await _collection.Find(filter).ToListAsync();
+        }
     }
 }
