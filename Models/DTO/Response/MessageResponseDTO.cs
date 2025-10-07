@@ -11,10 +11,7 @@ namespace Models.DTO.Response
     {
         public string? ChatId { get; set; }
         public string? MessageId { get; set; }
-        public string? SenderId { get; set; }
-        public string? SenderName { get; set; }
-        public string? ReceiverId { get; set; }
-        public string? ReceiverName { get; set; }
+        public ProfileResponseDTO? SenderInfor { get; set; }
         public string? Type { get; set; }
         public string? TextMessage { get; set; }
         public List<FileMetadata>? Images { get; set; }
@@ -23,5 +20,7 @@ namespace Models.DTO.Response
         public string? Status { get; set; }
 
         public ReplyMessageDTO? ReplyToMessage { get; set; }
+
+        public bool IsMine { get; set; } //kiểm tra tin nhắn của người dùng đang login hay không
     }
 }

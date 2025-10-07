@@ -40,5 +40,23 @@ namespace DataAccess.DAOs
                 .Limit(pageSize)
                 .ToListAsync();
         }
+
+        public async Task<Message?> GetMessageByIdsAsync(string? messageId)
+        {
+            if (!string.IsNullOrEmpty(messageId))
+                return null;
+
+            var filter = Builders<Message>.Filter.Eq(mess => mess.MessageId, messageId);
+            return await _collection.Find(filter).FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Message>> GetMessagesByIdsAsync(List<string>? messageId)
+        {
+            if (messageId == null || !messageId.Any())
+                return new List<Message>();
+
+            var filter = Builders<Message>.Filter.In(m => m.MessageId, messageId);
+            return await _collection.Find(filter).ToListAsync();
+        }
     }
 }

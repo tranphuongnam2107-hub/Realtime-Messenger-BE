@@ -24,5 +24,17 @@ namespace AppAPI.Controllers
 
             return StatusCode(result.Status, result);
         }
+
+        [HttpGet("messages/{chatId}")]
+        public async Task<IActionResult> GetMessagesOfChat([FromRoute] string? chatId, 
+                                                            [FromQuery] int pageSize = 5, 
+                                                            [FromQuery] string? lastMessageId = null)
+        {
+            if (string.IsNullOrEmpty(chatId))
+                return BadRequest("Chat ID is not valid.");
+
+            var result = await _messageService.GetMessagesAsync(chatId, pageSize, lastMessageId);
+            return StatusCode(result.Status, result);
+        }
     }
 }

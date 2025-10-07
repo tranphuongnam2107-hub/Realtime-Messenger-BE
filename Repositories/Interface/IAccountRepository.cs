@@ -10,6 +10,7 @@ namespace Repositories.Interface
     public interface IAccountRepository
     {
         Task<Account?> GetAccountByIdentifier(string? identifier);
+        Task<List<Account>?> GetAccountsByIdentifier(List<string>? accountIds);
         Task<Account?> UpdateLoginFail(string accId, int? failAttempts, DateTime? lockedUntil);
         Task<Account?> UpdateRefreshToken(string? acc_id, string? refreshToken, DateTime? expiry);
     }

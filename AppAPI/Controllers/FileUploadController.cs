@@ -55,17 +55,17 @@ namespace AppAPI.Controllers
         public async Task<IActionResult> DeleteFile([FromQuery] string fileUrl, [FromQuery] string resourceType = "image")
         {
             if (string.IsNullOrEmpty(fileUrl))
-                return BadRequest(new { message = "FileUrl không được để trống." });
+                return BadRequest(new { message = "FileUrl cannot be blank." });
 
             var publicId = _cloudinaryHelper.ExtractPublicId(fileUrl);
             if (string.IsNullOrEmpty(publicId))
-                return BadRequest(new { message = "Không thể lấy public_id từ URL" });
+                return BadRequest(new { message = "Cannot get public_id from URL" });
 
             var result = await _uploadService.DeleteAsync(publicId, resourceType);
 
             return result
-                ? Ok(new { message = "Xóa thành công", publicId })
-                : BadRequest(new { message = "Xóa thất bại" });
+                ? Ok(new { message = "Delete success.", publicId })
+                : BadRequest(new { message = "Delete fail." });
         }
     }
 }
