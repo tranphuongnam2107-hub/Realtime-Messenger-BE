@@ -11,6 +11,10 @@ namespace Repositories.Interface
     {
         Task<Chat> GetChatByIdAsync(string chatId);
         Task UpdateLastMessageAsync(string chatId, string lastMessage);
-        Task CreateChatAsync(Chat chat);
+        Task<Chat?> CreateChatAsync(Chat chat);
+
+        //CHAT MEMBER
+        Task<ChatMember?> AddNewMember(ChatMember request);
+        Task<ChatMember?> UpdateLastReadMessage(string memberId);
     }
 }

@@ -54,6 +54,7 @@ builder.Services.AddScoped<AccountDAO>();
 builder.Services.AddScoped<RoleDAO>();
 builder.Services.AddScoped<ChatDAO>();
 builder.Services.AddScoped<MessageDAO>();
+builder.Services.AddScoped<ChatMemberDAO>();
 
 
 //REPOSITORY DI
