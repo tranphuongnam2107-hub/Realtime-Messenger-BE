@@ -20,9 +20,18 @@ namespace DataAccess.DAOs
             return await _collection.Find(c => c.ChatId == chatId).FirstOrDefaultAsync();
         }
 
-        public async Task CreateChatAsync(Chat chat)
+        public async Task<Chat?> CreateChatAsync(Chat chat)
         {
-            await _collection.InsertOneAsync(chat);
+            try
+            {
+                await _collection.InsertOneAsync(chat);
+                return chat;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating chat: {ex.Message}");
+                return null;
+            }
         }
 
         public async Task UpdateLastMessageAsync(string chatId, string lastMessage)

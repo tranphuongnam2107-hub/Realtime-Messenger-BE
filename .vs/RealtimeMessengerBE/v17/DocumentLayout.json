@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{607264FC-0105-47DD-B0A2-2643AC2127FC}|DAOs\\DataAccess.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\daos\\daos\\chatmemberdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{607264FC-0105-47DD-B0A2-2643AC2127FC}|DAOs\\DataAccess.csproj|solutionrelative:daos\\daos\\chatmemberdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{607264FC-0105-47DD-B0A2-2643AC2127FC}|DAOs\\DataAccess.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\daos\\daos\\chatdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{607264FC-0105-47DD-B0A2-2643AC2127FC}|DAOs\\DataAccess.csproj|solutionrelative:daos\\daos\\chatdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -9,11 +18,37 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ChatMemberDAO.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\DAOs\\DAOs\\ChatMemberDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\DAOs\\ChatMemberDAO.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\DAOs\\DAOs\\ChatMemberDAO.cs",
+              "RelativeToolTip": "DAOs\\DAOs\\ChatMemberDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T13:12:45.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChatDAO.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\DAOs\\DAOs\\ChatDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\DAOs\\ChatDAO.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\DAOs\\DAOs\\ChatDAO.cs",
+              "RelativeToolTip": "DAOs\\DAOs\\ChatDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-09T13:12:33.896Z",
+              "EditorCaption": ""
             }
           ]
         },
