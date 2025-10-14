@@ -9,21 +9,29 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Models.Model
 {
+    public enum ChatType
+    {
+        Private,
+        Group
+    }
+
     public class Chat
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string ChatId { get; set; }
+        [BsonRepresentation(BsonType.String)]
+        public ChatType TypeChat { get; set; }
+        public string? LastMessage { get; set; }
+        public DateTime? LastMessageAt { get; set; }
         [Required]
-        public string TypeChat { get; set; }
-        public string LastMessage { get; set; }
-        public DateTime LastMessageAt { get; set; }
-        [Required]
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         //DÀNH CHO GROUP
-        public string GroupName { get; set; }
-        public string GroupAvatar { get; set; }
-        public string CreatedBy { get; set; }
+        public string? GroupName { get; set; }
+        public string? GroupAvatar { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string? CreatedBy { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

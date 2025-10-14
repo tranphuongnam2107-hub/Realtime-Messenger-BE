@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Services.Interface;
 
@@ -21,7 +16,7 @@ namespace Services.Implement
 
         public string? GetAccountIdFromToken()
         {
-            return _httpContextAccessor.HttpContext?.User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
+            return _httpContextAccessor.HttpContext?.User.FindFirst(JwtRegisteredClaimNames.Name)?.Value;
         }
 
         public string? GetEmailFromToken()

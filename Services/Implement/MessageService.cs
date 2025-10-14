@@ -106,10 +106,12 @@ namespace Services.Implement
             return BaseResponseDTO<List<MessageResponseDTO>>.Success("Get messages success.", messagesResponseDto, 200);
         }
 
-        public async Task<BaseResponseDTO<MessageResponseDTO>> SendMessageAsync(SendMessageRequestDTO request, string accId)
+        public async Task<BaseResponseDTO<MessageResponseDTO>> SendMessageAsync(SendMessageRequestDTO request)
         {
             try
             {
+                var accId = _userContextService.GetAccountIdFromToken();
+
                 //1. Validate input
                 if (string.IsNullOrEmpty(accId))
                     return BaseResponseDTO<MessageResponseDTO>.Fail("Account is not found.", null, null, 400);

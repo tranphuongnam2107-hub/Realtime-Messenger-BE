@@ -1,7 +1,42 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\",
-  "Documents": [],
+  "Documents": [
+    {
+<<<<<<< HEAD
+      "AbsoluteMoniker": "D:0:0:{BD099222-BE27-4D7A-ACB0-11C6EEF09A65}|AppAPI\\AppAPI.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\appapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD099222-BE27-4D7A-ACB0-11C6EEF09A65}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\services\\implement\\usercontextservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|solutionrelative:services\\implement\\usercontextservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\services\\implement\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|solutionrelative:services\\implement\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> 9f4c3235e6cff773bf07dbe53ad944ac22343c2f
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\services\\implement\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|solutionrelative:services\\implement\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD099222-BE27-4D7A-ACB0-11C6EEF09A65}|AppAPI\\AppAPI.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\appapi\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD099222-BE27-4D7A-ACB0-11C6EEF09A65}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+<<<<<<< HEAD
+      "AbsoluteMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\services\\implement\\usercontextservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|solutionrelative:services\\implement\\usercontextservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\services\\implement\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DAF1B813-385D-4C7F-8710-385282C411B1}|Services\\Services.csproj|solutionrelative:services\\implement\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{BD099222-BE27-4D7A-ACB0-11C6EEF09A65}|AppAPI\\AppAPI.csproj|d:\\study\\xinviec\\realtime messenger\\realtimemessengerbe\\appapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD099222-BE27-4D7A-ACB0-11C6EEF09A65}|AppAPI\\AppAPI.csproj|solutionrelative:appapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> 9f4c3235e6cff773bf07dbe53ad944ac22343c2f
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -9,11 +44,116 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": -1,
+<<<<<<< HEAD
+          "SelectedChildIndex": 2,
+=======
+          "SelectedChildIndex": 3,
+>>>>>>> 9f4c3235e6cff773bf07dbe53ad944ac22343c2f
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+<<<<<<< HEAD
+              "DocumentIndex": 4,
+=======
+              "DocumentIndex": 1,
+>>>>>>> 9f4c3235e6cff773bf07dbe53ad944ac22343c2f
+              "Title": "AuthenticationService.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Services\\Implement\\AuthenticationService.cs",
+              "RelativeDocumentMoniker": "Services\\Implement\\AuthenticationService.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Services\\Implement\\AuthenticationService.cs",
+              "RelativeToolTip": "Services\\Implement\\AuthenticationService.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAkwHEAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T12:15:36.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+<<<<<<< HEAD
+              "DocumentIndex": 0,
+=======
+              "DocumentIndex": 4,
+>>>>>>> 9f4c3235e6cff773bf07dbe53ad944ac22343c2f
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\AppAPI\\Program.cs",
+              "RelativeDocumentMoniker": "AppAPI\\Program.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\AppAPI\\Program.cs",
+              "RelativeToolTip": "AppAPI\\Program.cs",
+<<<<<<< HEAD
+              "ViewState": "AgIAAKwAAAAAAAAAAADgv8IAAAAKAAAAAAAAAA==",
+=======
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFwAAAAnAAAAAAAAAA==",
+>>>>>>> 9f4c3235e6cff773bf07dbe53ad944ac22343c2f
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T12:06:24.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+<<<<<<< HEAD
+              "DocumentIndex": 3,
+=======
+              "DocumentIndex": 0,
+>>>>>>> 9f4c3235e6cff773bf07dbe53ad944ac22343c2f
+              "Title": "UserContextService.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Services\\Implement\\UserContextService.cs",
+              "RelativeDocumentMoniker": "Services\\Implement\\UserContextService.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Services\\Implement\\UserContextService.cs",
+              "RelativeToolTip": "Services\\Implement\\UserContextService.cs",
+<<<<<<< HEAD
+              "ViewState": "AgIAABIAAAAAAAAAAAAwwBgAAAAIAAAAAAAAAA==",
+=======
+              "ViewState": "AgIAAA0AAAAAAAAAAAAwwBIAAAAAAAAAAAAAAA==",
+>>>>>>> 9f4c3235e6cff773bf07dbe53ad944ac22343c2f
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T12:06:19.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+<<<<<<< HEAD
+              "DocumentIndex": 1,
+=======
+              "DocumentIndex": 2,
+>>>>>>> 9f4c3235e6cff773bf07dbe53ad944ac22343c2f
+              "Title": "ChatService.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Services\\Implement\\ChatService.cs",
+              "RelativeDocumentMoniker": "Services\\Implement\\ChatService.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\Services\\Implement\\ChatService.cs",
+              "RelativeToolTip": "Services\\Implement\\ChatService.cs",
+<<<<<<< HEAD
+              "ViewState": "AgIAAAsAAAAAAAAAAADgvwsAAAAAAAAAAAAAAA==",
+=======
+              "ViewState": "AgIAABQAAAAAAAAAAAA6wCAAAAA1AAAAAAAAAA==",
+>>>>>>> 9f4c3235e6cff773bf07dbe53ad944ac22343c2f
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T12:02:06.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+<<<<<<< HEAD
+              "DocumentIndex": 2,
+=======
+              "DocumentIndex": 3,
+>>>>>>> 9f4c3235e6cff773bf07dbe53ad944ac22343c2f
+              "Title": "ChatController.cs",
+              "DocumentMoniker": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\AppAPI\\Controllers\\ChatController.cs",
+              "RelativeDocumentMoniker": "AppAPI\\Controllers\\ChatController.cs",
+              "ToolTip": "D:\\Study\\XinViec\\Realtime Messenger\\RealtimeMessengerBE\\AppAPI\\Controllers\\ChatController.cs",
+              "RelativeToolTip": "AppAPI\\Controllers\\ChatController.cs",
+<<<<<<< HEAD
+              "ViewState": "AgIAAAkAAAAAAAAAAAA7wCIAAAAAAAAAAAAAAA==",
+=======
+              "ViewState": "AgIAAAoAAAAAAAAAAAAowBoAAAAMAAAAAAAAAA==",
+>>>>>>> 9f4c3235e6cff773bf07dbe53ad944ac22343c2f
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T11:56:56.258Z",
+              "EditorCaption": ""
             }
           ]
         },
