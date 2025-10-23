@@ -12,5 +12,6 @@ namespace Services.Interface
     public interface IChatService
     {
         Task<BaseResponseDTO<ChatResponseDTO>> CreateNewChat(CreateChatRequestDTO? request);
+        Task<BaseResponseDTO<List<ListChatItemDTOResponse>>> ListChatOfUser();
     }
 }

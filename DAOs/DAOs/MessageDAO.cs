@@ -58,5 +58,15 @@ namespace DataAccess.DAOs
             var filter = Builders<Message>.Filter.In(m => m.MessageId, messageId);
             return await _collection.Find(filter).ToListAsync();
         }
+
+        public async Task<long> CountMessagesAfterAsync(string chatId, DateTime? lastReadAt)
+        {
+            var filter = Builders<Message>.Filter.Where(m =>
+                m.ChatId == chatId &&
+                m.CreatedAt > (lastReadAt ?? DateTime.MinValue)
+            );
+
+            return await _collection.CountDocumentsAsync(filter);
+        }
     }
 }

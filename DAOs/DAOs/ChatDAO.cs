@@ -20,6 +20,13 @@ namespace DataAccess.DAOs
             return await _collection.Find(c => c.ChatId == chatId).FirstOrDefaultAsync();
         }
 
+        public async Task<List<Chat>> GetChatsByIds(List<string> chatIds)
+        {
+            return await _collection.Find(c => chatIds.Contains(c.ChatId) && !c.IsDeleted)
+                           .SortByDescending(c => c.LastMessageAt)
+                           .ToListAsync();
+        }
+
         public async Task<Chat?> CreateChatAsync(Chat chat)
         {
             try
