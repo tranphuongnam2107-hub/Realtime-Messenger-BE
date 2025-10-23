@@ -54,5 +54,37 @@ namespace DataAccess.DAOs
                 return null;
             }
         }
-    }
+
+        public async Task<List<ChatMember>?> GetChatMembersOfUserAsync(string accountId)
+        {
+            return await _collection.Find(cm => cm.AccountId == accountId).ToListAsync();
+        }
+
+        public async Task<ChatMember> GetChatMemberAsync(string chatId, string accountId)
+        {
+            return await _collection.Find(cm => cm.ChatId == chatId && cm.AccountId == accountId).FirstOrDefaultAsync();
+        }
+
+        public async Task UpdateUnreadCountAsync(string chatId, string accountId, int unreadCount)
+        {
+            var update = Builders<ChatMember>.Update.Set(cm => cm.UnreadCountMessage, unreadCount);
+            await _collection.UpdateOneAsync(cm => cm.ChatId == chatId && cm.AccountId == accountId, update);
+        }
+
+        public async Task IncreaseUnreadCountExceptSenderAsync(string chatId, string senderId)
+        {
+            var filter = Builders<ChatMember>.Filter.And(
+                Builders<ChatMember>.Filter.Eq(cm => cm.ChatId, chatId),
+                Builders<ChatMember>.Filter.Ne(cm => cm.AccountId, senderId)
+            );
+
+            var update = Builders<ChatMember>.Update.Inc(cm => cm.UnreadCountMessage, 1);
+            await _collection.UpdateManyAsync(filter, update);
+        }
+
+        public async Task<List<ChatMember>> GetChatMemberByChatId(string chatId)
+        {
+            return await _collection.Find(cm => cm.ChatId == chatId).ToListAsync();
+        }
+    } 
 }

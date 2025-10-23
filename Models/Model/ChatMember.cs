@@ -31,5 +31,6 @@ namespace Models.Model
         [Required]
         public DateTime JoinedAt { get; set; } = DateTime.UtcNow;
         public DateTime? LastReadAt { get; set; }
+        public int UnreadCountMessage { get; set; } = 0;
     }
 }

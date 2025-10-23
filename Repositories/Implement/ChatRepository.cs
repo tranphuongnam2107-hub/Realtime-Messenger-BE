@@ -44,5 +44,33 @@ namespace Repositories.Implement
         {
             return await _memberDao.AddChatMember(request);
         }
+
+        public async Task<List<Chat>?> GetChatsOfUser(string accountId)
+        {
+            var chatMembers = await _memberDao.GetChatMembersOfUserAsync(accountId);
+            var chatIds = chatMembers.Select(cm => cm.ChatId).ToList();
+
+            return await _chatDao.GetChatsByIds(chatIds);
+        }
+
+        public async Task IncreaseUnreadCountExceptSenderAsync(string chatId, string senderId)
+        {
+            await _memberDao.IncreaseUnreadCountExceptSenderAsync(chatId, senderId);
+        }
+
+        public async Task<List<ChatMember>> GetMembersByChatIdAsync(string chatId)
+        {
+            return await _memberDao.GetChatMemberByChatId(chatId);
+        }
+
+        public async Task<ChatMember> GetByChatAndUserIdAsync(string chatId, string accountId)
+        {
+            return await _memberDao.GetChatMemberAsync(chatId, accountId);
+        }
+
+        public async Task UpdateUnreadCount(string chatId, string accountId, int unreadCount)
+        {
+            await _memberDao.UpdateUnreadCountAsync(chatId, accountId, unreadCount);
+        }
     }
 }

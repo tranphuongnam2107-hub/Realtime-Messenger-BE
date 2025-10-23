@@ -13,5 +13,6 @@ namespace Repositories.Interface
         Task<List<Message>> GetMessagesByChatIdAsync(string chatId, int pageSize = 5, string? lastMessageId = null);
         Task<Message?> GetMessageByIdAsync(string? messageId);
         Task<List<Message>?> GetMessagesByIdAsync(List<string>? messageIds);
+        Task<long> CountMessagesAfter(string chatId, DateTime? lastReadAt);
     }
 }

@@ -18,6 +18,11 @@ namespace Repositories.Implement
             _messageDao = messageDao;
         }
 
+        public async Task<long> CountMessagesAfter(string chatId, DateTime? lastReadAt)
+        {
+            return await _messageDao.CountMessagesAfterAsync(chatId, lastReadAt);
+        }
+
         public async Task CreateMessageAsync(Message message)
         {
             await _messageDao.CreateMessageAsync(message);

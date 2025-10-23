@@ -9,6 +9,7 @@ using Models.DTO;
 using Models.DTO.Request;
 using Models.DTO.Response;
 using Models.Model;
+using MongoDB.Bson;
 using Repositories.Interface;
 using Services.Hubs;
 using Services.Interface;
@@ -103,6 +104,26 @@ namespace Services.Implement
                 return messageDto;
             }).ToList();
 
+            //UPDATE UNREAD MESSAGE EQ 0
+            await _chatRepository.UpdateUnreadCount(chatId, accountId, 0);
+
+            //UPDATE LAST READ AT
+            var memberLogged = await _chatRepository.GetByChatAndUserIdAsync(chatId, accountId);
+            await _chatRepository.UpdateLastReadMessage(memberLogged.MemberId);
+
+            var otherMembers = await _chatRepository.GetMembersByChatIdAsync(chatId);
+
+            foreach (var member in otherMembers.Where(m => m.AccountId != accountId))
+            {
+                await _hubContext.Clients.User(member.AccountId)
+                    .SendAsync("ChatRead", new
+                    {
+                        ChatId = chatId,
+                        ReaderId = accountId,
+                        ReadAt = DateTime.UtcNow
+                    });
+            }
+
             return BaseResponseDTO<List<MessageResponseDTO>>.Success("Get messages success.", messagesResponseDto, 200);
         }
 
@@ -174,11 +195,29 @@ namespace Services.Implement
 
                 await _chatRepository.UpdateLastMessageAsync(chat.ChatId, chat.LastMessage); //lastMessageAt đã có setup trong dao rồi
 
+                // 6. Tăng UnreadCount cho các thành viên khác (ngoại trừ người gửi)
+                await _chatRepository.IncreaseUnreadCountExceptSenderAsync(chat.ChatId, accId);
+
+                var chatMembers = await _chatRepository.GetMembersByChatIdAsync(chat.ChatId);
+                var otherMembers = chatMembers.Where(m => m.AccountId != accId).ToList();
+
+                foreach (var member in otherMembers)
+                {
+                    // Lấy lại count mới
+                    var updatedMember = await _chatRepository.GetByChatAndUserIdAsync(chat.ChatId, member.AccountId);
+
+                    await _hubContext.Clients.User(member.AccountId)
+                        .SendAsync("UpdateUnreadCount", new
+                        {
+                            ChatId = chat.ChatId,
+                            UnreadCount = updatedMember.UnreadCountMessage
+                        });
+                }
 
                 //LẤY THÔNG TIN REPLY NẾU CÓ REPLY
                 ReplyMessageDTO? replyMessage = null;
 
-                if (!string.IsNullOrEmpty(request.ReplyToMessageId))
+                if (!string.IsNullOrEmpty(request.ReplyToMessageId) && ObjectId.TryParse(request.ReplyToMessageId, out _))
                 {
                     var originalMessage = await _messageRepository.GetMessageByIdAsync(request.ReplyToMessageId);
                     if (originalMessage != null)

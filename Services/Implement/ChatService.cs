@@ -7,6 +7,7 @@ using Models.DTO;
 using Models.DTO.Request;
 using Models.DTO.Response;
 using Models.Model;
+using Repositories.Implement;
 using Repositories.Interface;
 using Services.Interface;
 
@@ -15,14 +16,16 @@ namespace Services.Implement
     public class ChatService : IChatService
     {
         private readonly IChatRepository _chatRepository;
+        private readonly IMessageRepository _messageRepository;
         private readonly IUploadService _uploadService;
         private readonly IUserContextService _userContextService;
 
-        public ChatService(IChatRepository chatRepository, IUploadService uploadService, IUserContextService userContextService)
+        public ChatService(IChatRepository chatRepository, IUploadService uploadService, IUserContextService userContextService, IMessageRepository messageRepository)
         {
             _chatRepository = chatRepository;
             _uploadService = uploadService;
             _userContextService = userContextService;
+            _messageRepository = messageRepository;
         }
 
         public async Task<BaseResponseDTO<ChatResponseDTO>> CreateNewChat(CreateChatRequestDTO? request)
@@ -100,5 +103,54 @@ namespace Services.Implement
 
             return BaseResponseDTO<ChatResponseDTO>.Success("Create new chat success.", result, 200);
         }
+
+        public async Task<BaseResponseDTO<List<ListChatItemDTOResponse>>> ListChatOfUser()
+        {
+            //1. Get user id base on the token in header
+            var loggedUserId = _userContextService.GetAccountIdFromToken();
+
+            if (loggedUserId == null)
+                return BaseResponseDTO<List<ListChatItemDTOResponse>>.Fail("Unauthorized: Missing user context.", null, null, 500);
+
+            //2. Get list chat of user id
+            var chats = await _chatRepository.GetChatsOfUser(loggedUserId);
+
+            if (chats == null || !chats.Any())
+                return BaseResponseDTO<List<ListChatItemDTOResponse>>.Fail("List chat of user is null or empty", null, null, 404);
+
+            var result = new List<ListChatItemDTOResponse>();
+
+            foreach (var chat in chats)
+            {
+                var member = await _chatRepository.GetByChatAndUserIdAsync(chat.ChatId, loggedUserId);
+                if (member == null) continue;
+
+                // Nếu UnreadCount = 0 thì có thể cập nhật theo LastReadAt
+                if (member.UnreadCountMessage == 0)
+                {
+                    var unreadCount = (int)await _messageRepository.CountMessagesAfter(chat.ChatId, member.LastReadAt);
+                    await _chatRepository.UpdateUnreadCount(chat.ChatId, loggedUserId, unreadCount);
+                    member.UnreadCountMessage = unreadCount;
+                }
+
+                result.Add(new ListChatItemDTOResponse
+                {
+                    ChatId = chat.ChatId,
+                    TypeChat = chat.TypeChat,
+                    LastMessage = chat.LastMessage,
+                    LastMessageAt = chat.LastMessageAt,
+                    UnreadCountMessage = member.UnreadCountMessage,
+                    GroupName = chat.GroupName,
+                    GroupAvatar = chat.GroupAvatar,
+                    CreatedAt = chat.CreatedAt,
+                    CreatedBy = chat.CreatedBy,
+                    IsDeleted = chat.IsDeleted
+                });
+            }
+
+            return BaseResponseDTO<List<ListChatItemDTOResponse>>.Success("Get list chat of user successfully", result, 200);
+        }
+
+        
     }
 }

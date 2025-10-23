@@ -14,6 +14,7 @@ namespace Models.Mapper
         public BaseMapper()
         {
             CreateMap<Account, LoginResponseDTO>();
+            CreateMap<Account, ProfileResponseDTO>();
             CreateMap<Message, MessageResponseDTO>()
                 .ForMember(mess => mess.SenderInfor, opt => opt.Ignore())
                 .ForMember(mess => mess.ReplyToMessage, opt => opt.Ignore())
