@@ -13,5 +13,8 @@ namespace Repositories.Interface
         Task<List<Account>?> GetAccountsByIdentifier(List<string>? accountIds);
         Task<Account?> UpdateLoginFail(string accId, int? failAttempts, DateTime? lockedUntil);
         Task<Account?> UpdateRefreshToken(string? acc_id, string? refreshToken, DateTime? expiry);
+        Task<Account?> SearchUserByIdentify(string? identify);
+        Task<List<Account>> GetMutualFriend(string? loggedUserId, string? toUserId);
+        Task<List<Chat>> GetMutualGroup(string? loggedUserId, string? toUserId);
     }
 }

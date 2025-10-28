@@ -27,7 +27,7 @@ namespace Models.Model
         [Required]
         public DateTime CreatedAt { get; set; }
         [Required]
-        public string Status { get; set; }
+        public string Status { get; set; } //ONLINE OR OFFLINE
         [Required]
         [BsonRepresentation(BsonType.ObjectId)]
         public string RoleId { get; set; }
@@ -35,5 +35,6 @@ namespace Models.Model
         public DateTime? TokenExpiry { get; set; }
         public int? FailedAttempts { get; set; }
         public DateTime? LockedUntil { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

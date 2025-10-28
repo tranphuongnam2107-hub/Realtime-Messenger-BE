@@ -55,6 +55,7 @@ builder.Services.AddScoped<RoleDAO>();
 builder.Services.AddScoped<ChatDAO>();
 builder.Services.AddScoped<MessageDAO>();
 builder.Services.AddScoped<ChatMemberDAO>();
+builder.Services.AddScoped<FriendDAO>();
 
 
 //REPOSITORY DI
@@ -70,6 +71,7 @@ builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<IChatService, ChatService>();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 //CẤU HÌNH CLOUDINARY
 builder.Services.AddSingleton<CloudinaryConnection>();
