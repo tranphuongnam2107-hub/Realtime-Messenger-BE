@@ -15,11 +15,12 @@ namespace Models.Model
         [BsonRepresentation(BsonType.ObjectId)]
         public string FriendId { get; set; }
         [Required]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string SenderId { get; set; }
         [Required]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string ReceiverId { get; set; }
         [Required]
         public string StatusFriend { get; set; }
-
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using Models.Model;
 
 namespace Models.DTO.Response
 {
@@ -22,5 +23,7 @@ namespace Models.DTO.Response
         public DateTime? TokenExpiry { get; set; }
         public int? FailedAttempts { get; set; }
         public DateTime? LockedUntil { get; set; }
+        public List<ProfileResponseDTO>? MutualFriends { get; set; }
+        public List<Chat>? MutualChatGroups { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace DataAccess.DAOs
 
         public async Task<Account?> GetAccountByIdentify(string? identify)
         {
-            if(string.IsNullOrEmpty(identify)) 
+            if (string.IsNullOrEmpty(identify))
                 return null;
 
             var filter = Builders<Account>.Filter.Or(
@@ -82,8 +82,31 @@ namespace DataAccess.DAOs
             if (accountIds == null || !accountIds.Any())
                 return new List<Account>();
 
-            var filter = Builders<Account>.Filter.In(a => a.AccountId, accountIds);
+            var filter = Builders<Account>.Filter.In(a => a.AccountId, accountIds)
+                & Builders<Account>.Filter.Eq(a => a.IsDeleted, false);
+
             return await _collection.Find(filter).ToListAsync();
         }
+
+        public async Task<Account?> SearchUserByIdentify(string? identify)
+        {
+            if (string.IsNullOrEmpty(identify))
+                return null;
+
+            identify = identify.Trim().Replace(" ", string.Empty);
+
+            var filterIdentify = Builders<Account>.Filter.Or(
+                Builders<Account>.Filter.Eq(u => u.Email, identify),
+                Builders<Account>.Filter.Eq(u => u.PhoneNumber, identify)
+            );
+
+            var filterNotDeleted = Builders<Account>.Filter.Eq(u => u.IsDeleted, false);
+
+            var finalFilter = Builders<Account>.Filter.And(filterIdentify, filterNotDeleted);
+
+
+            return await _collection.Find(finalFilter).FirstOrDefaultAsync();
+        }
+
     }
 }
