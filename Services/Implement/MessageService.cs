@@ -140,9 +140,6 @@ namespace Services.Implement
                 if (string.IsNullOrEmpty(request.ChatId))
                     return BaseResponseDTO<MessageResponseDTO>.Fail("Chat Id is null or invalid", null, null, 400);
 
-                if (string.IsNullOrEmpty(request.Type))
-                    return BaseResponseDTO<MessageResponseDTO>.Fail("Type message is null or invalid", null, null, 400);
-
                 //LẤY THÔNG TIN CHAT TỪ CHAT ID
                 var chat = await _chatRepository.GetChatByIdAsync(request.ChatId);
                 if (chat == null)

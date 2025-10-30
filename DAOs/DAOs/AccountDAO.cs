@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Context;
@@ -104,8 +105,17 @@ namespace DataAccess.DAOs
 
             var finalFilter = Builders<Account>.Filter.And(filterIdentify, filterNotDeleted);
 
-
             return await _collection.Find(finalFilter).FirstOrDefaultAsync();
+        }
+
+        public async Task<Account?> GetAccountByAccountId(string? accountId)
+        {
+            if (string.IsNullOrEmpty(accountId))
+                return null;
+
+            var filter = Builders<Account>.Filter.Eq(a => a.AccountId, accountId);
+
+            return await _collection.Find(filter).FirstOrDefaultAsync();
         }
 
     }

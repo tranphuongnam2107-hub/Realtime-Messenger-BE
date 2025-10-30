@@ -12,7 +12,7 @@ namespace Models.DTO.Response
         public string? ChatId { get; set; }
         public string? MessageId { get; set; }
         public ProfileResponseDTO? SenderInfor { get; set; }
-        public string? Type { get; set; }
+        public TypeMessage? Type { get; set; }
         public string? TextMessage { get; set; }
         public List<FileMetadata>? Images { get; set; }
         public List<FileMetadata>? Files { get; set; }

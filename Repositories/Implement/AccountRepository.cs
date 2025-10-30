@@ -24,6 +24,11 @@ namespace Repositories.Implement
             _chatDAO = chatDAO;
         }
 
+        public async Task<Account?> GetAccountByAccountId(string? accountId)
+        {
+            return await _accountDao.GetAccountByAccountId(accountId);
+        }
+
         public async Task<Account?> GetAccountByIdentifier(string? identifier)
         {
             return await _accountDao.GetAccountByIdentify(identifier);

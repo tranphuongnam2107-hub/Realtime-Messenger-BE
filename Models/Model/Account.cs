@@ -9,6 +9,11 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Models.Model
 {
+    public enum OperateStatus
+    {
+        Online,
+        Offline
+    }
     public class Account
     {
         [BsonId]
@@ -27,7 +32,7 @@ namespace Models.Model
         [Required]
         public DateTime CreatedAt { get; set; }
         [Required]
-        public string Status { get; set; } //ONLINE OR OFFLINE
+        public OperateStatus Status { get; set; } = OperateStatus.Offline;
         [Required]
         [BsonRepresentation(BsonType.ObjectId)]
         public string RoleId { get; set; }

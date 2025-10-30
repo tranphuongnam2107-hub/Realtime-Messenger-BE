@@ -21,7 +21,7 @@ namespace DataAccess.DAOs
                 return new List<string>();
 
             var filter = Builders<Friend>.Filter.And(
-                Builders<Friend>.Filter.Eq(f => f.StatusFriend, "Accepted"),
+                Builders<Friend>.Filter.Eq(f => f.StatusFriend, StatusFriend.Accepted),
                 Builders<Friend>.Filter.Or(
                     Builders<Friend>.Filter.Eq(f => f.SenderId, userId),
                     Builders<Friend>.Filter.Eq(f => f.ReceiverId, userId)
@@ -35,6 +35,61 @@ namespace DataAccess.DAOs
             ).Distinct().ToList();
 
             return friendIds;
+        }
+
+        public async Task<Friend?> AddFriend(Friend? friend)
+        {
+            if (friend == null)
+                return null;
+
+            await _collection.InsertOneAsync(friend);
+            return friend;
+        }
+
+        public async Task<Friend?> GetFriendByUsers(string? firstUser, string? secondUser)
+        {
+            if (string.IsNullOrEmpty(firstUser) || string.IsNullOrEmpty(secondUser))
+                return null;
+
+            var filter = Builders<Friend>.Filter.Or(
+                Builders<Friend>.Filter.And(
+                    Builders<Friend>.Filter.Eq(f => f.SenderId, firstUser),
+                    Builders<Friend>.Filter.Eq(f => f.ReceiverId, secondUser)
+                ),
+                Builders<Friend>.Filter.And(
+                    Builders<Friend>.Filter.Eq(f => f.SenderId, secondUser),
+                    Builders<Friend>.Filter.Eq(f => f.ReceiverId, firstUser)
+                )
+            );
+
+            return await _collection.Find(filter).FirstOrDefaultAsync();
+        }
+
+        public async Task<Friend?> UpdateStatusFriend(string? friendId, StatusFriend newStatus)
+        {
+            if (string.IsNullOrEmpty(friendId))
+                return null;
+
+            var filter = Builders<Friend>.Filter.Eq(f => f.FriendId, friendId);
+            var update = Builders<Friend>.Update.Set(f => f.StatusFriend, newStatus)
+                .Set(f => f.UpdatedAt, DateTime.UtcNow);
+
+            return await _collection.FindOneAndUpdateAsync(
+                filter,
+                update,
+                new FindOneAndUpdateOptions<Friend>
+                {
+                    ReturnDocument = ReturnDocument.After
+                });
+        }
+
+        public async Task<Friend?> GetFriendById(string? friendId)
+        {
+            if (string.IsNullOrEmpty(friendId))
+                return null;
+
+            var filter = Builders<Friend>.Filter.Eq(f => f.FriendId, friendId);
+            return await _collection.Find(filter).FirstOrDefaultAsync();
         }
     }
 }

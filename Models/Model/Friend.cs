@@ -9,6 +9,11 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Models.Model
 {
+    public enum StatusFriend
+    {
+        Accepted,
+        Requested
+    }
     public class Friend
     {
         [BsonId]
@@ -21,6 +26,8 @@ namespace Models.Model
         [BsonRepresentation(BsonType.ObjectId)]
         public string ReceiverId { get; set; }
         [Required]
-        public string StatusFriend { get; set; }
+        public StatusFriend StatusFriend { get; set; } = StatusFriend.Requested;
+        public DateTime? CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
     }
 }

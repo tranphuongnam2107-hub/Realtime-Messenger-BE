@@ -21,7 +21,7 @@ namespace Models.Model
         [BsonRepresentation(BsonType.ObjectId)]
         public string ChatId { get; set; }
         [BsonRepresentation(BsonType.String)]
-        public ChatType TypeChat { get; set; }
+        public ChatType TypeChat { get; set; } = ChatType.Private;
         public string? LastMessage { get; set; }
         public DateTime? LastMessageAt { get; set; }
         [Required]
