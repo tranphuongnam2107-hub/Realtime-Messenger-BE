@@ -63,6 +63,7 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IChatRepository, ChatRepository>();
 builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+builder.Services.AddScoped<IFriendRepository, FriendRepository>();
 
 //SERVICE DI
 builder.Services.AddScoped<CloudinaryHelper>();
@@ -72,6 +73,7 @@ builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<IChatService, ChatService>();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IFriendService, FriendService>();
 
 //CẤU HÌNH CLOUDINARY
 builder.Services.AddSingleton<CloudinaryConnection>();

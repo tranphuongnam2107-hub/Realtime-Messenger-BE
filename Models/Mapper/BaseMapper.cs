@@ -22,6 +22,7 @@ namespace Models.Mapper
                     opt => opt.MapFrom((src, dest, _, ctx) =>
                         ctx.Items.ContainsKey("CurrentUserId") &&
                         ctx.Items["CurrentUserId"].ToString() == src.SenderId));
+            CreateMap<Friend, FriendResponseDTO>();
         }
 
     }
