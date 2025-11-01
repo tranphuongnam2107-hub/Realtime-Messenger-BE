@@ -5,7 +5,7 @@ using Services.Interface;
 
 namespace AppAPI.Controllers
 {
-    [Route("api/friend")]
+    [Route("api/friends")]
     [ApiController]
     public class FriendController : ControllerBase
     {
@@ -22,6 +22,24 @@ namespace AppAPI.Controllers
             if (request == null) return BadRequest("Request is null.");
 
             var result = await _friendService.SendFriendRequest(request.ToUserId);
+
+            return StatusCode(result.Status, result);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> ResponseFriendRequest([FromBody] ResponseFriendRequestDTO request)
+        {
+            if (request == null) return BadRequest("Request is invalid.");
+
+            var result = await _friendService.ResponseFriendRequest(request);
+
+            return StatusCode(result.Status, result);
+        }
+
+        [HttpGet("requests")]
+        public async Task<IActionResult> GetAllFriendRequest()
+        {
+            var result = await _friendService.GetAllFriendRequest();
 
             return StatusCode(result.Status, result);
         }

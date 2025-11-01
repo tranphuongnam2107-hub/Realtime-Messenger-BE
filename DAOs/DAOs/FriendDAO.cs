@@ -91,5 +91,24 @@ namespace DataAccess.DAOs
             var filter = Builders<Friend>.Filter.Eq(f => f.FriendId, friendId);
             return await _collection.Find(filter).FirstOrDefaultAsync();
         }
+
+        public async Task<List<Friend>> GetIncomingFriendRequests(string? accountId)
+        {
+            var filter = Builders<Friend>.Filter.And(
+                Builders<Friend>.Filter.Eq(f => f.ReceiverId, accountId),
+                Builders<Friend>.Filter.Eq(f => f.StatusFriend, StatusFriend.Requested)
+            );
+
+            return await _collection.Find(filter).ToListAsync();
+        }
+
+        public async Task<List<Friend>> GetOutgoingFriendRequests(string accountId)
+        {
+            var filter = Builders<Friend>.Filter.And(
+                Builders<Friend>.Filter.Eq(f => f.SenderId, accountId),
+                Builders<Friend>.Filter.Eq(f => f.StatusFriend, StatusFriend.Requested)
+            );
+            return await _collection.Find(filter).ToListAsync();
+        }
     }
 }
