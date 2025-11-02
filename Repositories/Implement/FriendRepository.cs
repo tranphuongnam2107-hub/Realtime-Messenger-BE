@@ -33,6 +33,11 @@ namespace Repositories.Implement
             return await _friendDao.GetFriendByUsers(firstUser, secondUser);
         }
 
+        public async Task<List<Friend>> GetFriendsOfUser(string? accountId)
+        {
+            return await _friendDao.GetFriendsOfUser(accountId);
+        }
+
         public async Task<List<Friend>> GetIncomingFriendRequests(string? accountId)
         {
             return await _friendDao.GetIncomingFriendRequests(accountId);

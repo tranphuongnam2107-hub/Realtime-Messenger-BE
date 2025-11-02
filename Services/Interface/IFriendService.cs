@@ -15,6 +15,6 @@ namespace Services.Interface
         Task<BaseResponseDTO<FriendResponseDTO>> SendFriendRequest(string? toUserId);
         Task<BaseResponseDTO<FriendResponseDTO>> ResponseFriendRequest(ResponseFriendRequestDTO request);
         Task<BaseResponseDTO<FriendRequestsListDTO>> GetAllFriendRequest();
-        Task<BaseResponseDTO<List<FriendResponseDTO>>> GetAlreadyFriends();
+        Task<BaseResponseDTO<List<FriendListItemDTO>>> GetAlreadyFriends();
     }
 }
