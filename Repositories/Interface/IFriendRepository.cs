@@ -15,5 +15,6 @@ namespace Repositories.Interface
         Task<Friend?> GetFriendByFriendId(string? friendId);
         Task<List<Friend>> GetIncomingFriendRequests(string? accountId);
         Task<List<Friend>> GetOutgoingFriendRequests(string accountId);
+        Task<List<Friend>> GetFriendsOfUser(string? accountId);
     }
 }

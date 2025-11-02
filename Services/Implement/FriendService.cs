@@ -80,17 +80,67 @@ namespace Services.Implement
             return BaseResponseDTO<FriendRequestsListDTO>.Success("OK", result, 200);
         }
 
-        public async Task<BaseResponseDTO<List<FriendResponseDTO>>> GetAlreadyFriends()
+        public async Task<BaseResponseDTO<List<FriendListItemDTO>>> GetAlreadyFriends()
         {
             var loggedUserId = _userContextService.GetAccountIdFromToken();
 
             if (loggedUserId == null)
-                return BaseResponseDTO<List<FriendResponseDTO>>.Fail("Unauthorized: Missing user context.", null, null, 500);
+                return BaseResponseDTO<List<FriendListItemDTO>>.Fail("Unauthorized: Missing user context.", null, null, 500);
 
             var loggedUser = await _accountRepository.GetAccountByAccountId(loggedUserId);
-            var loggedUserInfor = _mapper.Map<ProfileResponseDTO>(loggedUser);
+            if (loggedUser == null)
+                return BaseResponseDTO<List<FriendListItemDTO>>.Fail("User not found.", null, null, 404);
 
-            return null;
+            var friends = await _friendRepository.GetFriendsOfUser(loggedUser.AccountId);
+
+            if (friends == null || !friends.Any())
+                return BaseResponseDTO<List<FriendListItemDTO>>.Success("No friends found.", new List<FriendListItemDTO>(), 200);
+
+            var friendIds = friends
+               .Select(f => f.SenderId == loggedUserId ? f.ReceiverId : f.SenderId)
+               .Distinct()
+               .ToList();
+
+            var accounts = await _accountRepository.GetAccountsByIdentifier(friendIds);
+            var accountDict = accounts.ToDictionary(a => a.AccountId, a => a);
+
+            var friendDtos = new List<FriendListItemDTO>();
+
+            foreach (var friendEntity in friends)
+            {
+                var friendId = friendEntity.SenderId == loggedUserId
+                    ? friendEntity.ReceiverId
+                    : friendEntity.SenderId;
+
+                if (!accountDict.TryGetValue(friendId, out var friendAccount))
+                    continue;
+
+                var friendDto = new FriendListItemDTO
+                {
+                    FriendId = friendEntity.FriendId,
+                    CreatedAt = friendEntity.CreatedAt,
+                    UpdatedAt = friendEntity.UpdatedAt,
+                    FriendInfor = _mapper.Map<ProfileResponseDTO>(friendAccount)
+                };
+
+                var mutualFriendsTask = _accountRepository.GetMutualFriend(loggedUserId, friendId);
+                var mutualGroupsTask = _accountRepository.GetMutualGroup(loggedUserId, friendId);
+
+                await Task.WhenAll(mutualFriendsTask, mutualGroupsTask);
+
+                var mutualFriends = await mutualFriendsTask;
+                var mutualGroups = await mutualGroupsTask;
+
+                if (mutualFriends.Any())
+                    friendDto.FriendInfor.MutualFriends = _mapper.Map<List<ProfileResponseDTO>>(mutualFriends);
+
+                if (mutualGroups.Any())
+                    friendDto.FriendInfor.MutualChatGroups = mutualGroups;
+
+                friendDtos.Add(friendDto);
+            }
+
+            return BaseResponseDTO<List<FriendListItemDTO>>.Success("Get friend list successfully.", friendDtos, 200);
         }
 
         public async Task<BaseResponseDTO<FriendResponseDTO>> ResponseFriendRequest(ResponseFriendRequestDTO request)

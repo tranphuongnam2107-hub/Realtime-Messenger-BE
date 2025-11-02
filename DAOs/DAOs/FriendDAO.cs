@@ -37,6 +37,22 @@ namespace DataAccess.DAOs
             return friendIds;
         }
 
+        public async Task<List<Friend>> GetFriendsOfUser(string? accountId)
+        {
+            if (string.IsNullOrEmpty(accountId))
+                return new List<Friend>();
+
+            var filter = Builders<Friend>.Filter.And(
+                Builders<Friend>.Filter.Eq(f => f.StatusFriend, StatusFriend.Accepted),
+                Builders<Friend>.Filter.Or(
+                    Builders<Friend>.Filter.Eq(f => f.SenderId, accountId),
+                    Builders<Friend>.Filter.Eq(f => f.ReceiverId, accountId)
+                )
+            );
+
+            return await _collection.Find(filter).ToListAsync();
+        }
+
         public async Task<Friend?> AddFriend(Friend? friend)
         {
             if (friend == null)

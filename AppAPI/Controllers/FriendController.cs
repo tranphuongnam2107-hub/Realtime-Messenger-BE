@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.DTO.Request;
 using Services.Interface;
@@ -7,6 +8,7 @@ namespace AppAPI.Controllers
 {
     [Route("api/friends")]
     [ApiController]
+    [Authorize]
     public class FriendController : ControllerBase
     {
         private readonly IFriendService _friendService;
@@ -41,6 +43,13 @@ namespace AppAPI.Controllers
         {
             var result = await _friendService.GetAllFriendRequest();
 
+            return StatusCode(result.Status, result);
+        }
+
+        [HttpGet] 
+        public async Task<IActionResult> GetAllFriend()
+        {
+            var result = await _friendService.GetAlreadyFriends();
             return StatusCode(result.Status, result);
         }
     }
