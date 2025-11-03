@@ -24,6 +24,11 @@ namespace Repositories.Implement
             _chatDAO = chatDAO;
         }
 
+        public async Task<bool> DeleteRefreshToken(string? accountId)
+        {
+            return await _accountDao.DeleteFreshTokenByAccountId(accountId);
+        }
+
         public async Task<Account?> GetAccountByAccountId(string? accountId)
         {
             return await _accountDao.GetAccountByAccountId(accountId);
@@ -32,6 +37,11 @@ namespace Repositories.Implement
         public async Task<Account?> GetAccountByIdentifier(string? identifier)
         {
             return await _accountDao.GetAccountByIdentify(identifier);
+        }
+
+        public async Task<Account?> GetAccountByRefreshToken(string refreshTokens)
+        {
+            return await _accountDao.GetAccountByRefreshTokenAsync(refreshTokens);
         }
 
         public async Task<List<Account>?> GetAccountsByIdentifier(List<string>? accountIds)

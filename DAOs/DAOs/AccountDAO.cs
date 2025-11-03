@@ -118,5 +118,34 @@ namespace DataAccess.DAOs
             return await _collection.Find(filter).FirstOrDefaultAsync();
         }
 
+
+        /// <summary>
+        ///     Sử dụng để lấy Account theo refresh token
+        /// </summary>
+        public async Task<Account?> GetAccountByRefreshTokenAsync(string refreshToken)
+        {
+            var filter = Builders<Account>.Filter.Eq(a => a.RefreshToken, refreshToken);
+            return await _collection.Find(filter).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
+        ///     Delete Refresh Token of user by account id
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns>False if delete fail, True is success</returns>
+        public async Task<bool> DeleteFreshTokenByAccountId(string? accountId)
+        {
+            if (string.IsNullOrEmpty(accountId))
+                return false;
+
+            var filter = Builders<Account>.Filter.Eq(a => a.AccountId, accountId);
+
+            var update = Builders<Account>.Update
+                .Set(a => a.RefreshToken, null)
+                .Set(a => a.TokenExpiry, null);
+            var result = await _collection.UpdateOneAsync(filter, update);
+
+            return result.IsAcknowledged && result.ModifiedCount > 0;
+        }
     }
 }

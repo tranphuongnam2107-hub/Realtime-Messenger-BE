@@ -33,5 +33,29 @@ namespace AppAPI.Controllers
 
             return Ok(result);
         }
+
+        
+        [HttpPost("logout")]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            var result = await _authenService.Logout();
+            if (result == null)
+                return NotFound();
+
+            return StatusCode(result.Status, result);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequestDTO request)
+        {
+            if (request == null)
+                return BadRequest("Request is invalid.");
+
+            var result = await _authenService.ValidateRefreshToken(request.RefreshToken);
+
+            return StatusCode(result.Status, result);
+        }
     }
 }

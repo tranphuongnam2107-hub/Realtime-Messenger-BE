@@ -28,14 +28,16 @@ namespace Services.Implement
         private readonly PasswordHasher _hasher;
         private readonly IMapper _mapper;
         private readonly JwtSetting _jwtSetting;
+        private readonly IUserContextService _userContextService;
 
-        public AuthenticationService(IAccountRepository accountRepository, PasswordHasher hasher, IMapper mapper, IRoleRepository roleRepository, IOptions<JwtSetting> jwtSettings)
+        public AuthenticationService(IAccountRepository accountRepository, PasswordHasher hasher, IMapper mapper, IRoleRepository roleRepository, IOptions<JwtSetting> jwtSettings, IUserContextService userContextService)
         {
             _accountRepository = accountRepository;
             _hasher = hasher;
             _mapper = mapper;
             _roleRepository = roleRepository;
             _jwtSetting = jwtSettings.Value;
+            _userContextService = userContextService;
         }
 
         public async Task<BaseResponseDTO<LoginResponseDTO>?> Login(LoginRequestDTO request)
@@ -84,9 +86,40 @@ namespace Services.Implement
             return await GenerateToken(account);
         }
 
-        public Task<BaseResponseDTO<LoginResponseDTO>?> Logout(string accountId)
+        public async Task<BaseResponseDTO<LoginResponseDTO>?> Logout()
         {
-            return null;
+            var accountId = _userContextService.GetAccountIdFromToken();
+
+            if (accountId == null)
+                return BaseResponseDTO<LoginResponseDTO>.Fail("Unauthorized: Missing user context.", null, null, 403);
+
+            await _accountRepository.DeleteRefreshToken(accountId);
+            return BaseResponseDTO<LoginResponseDTO>.Success("Logout successfully", null, 200);
+        }
+
+        public async Task<BaseResponseDTO<LoginResponseDTO>> ValidateRefreshToken(string? refreshToken)
+        {
+            if (string.IsNullOrEmpty(refreshToken))
+                return BaseResponseDTO<LoginResponseDTO>.Fail("Unauthorized: Missing user context.", null, null, 403);
+
+            //Lấy account dựa trên refreshToken
+            var account = await _accountRepository.GetAccountByRefreshToken(refreshToken);
+
+            //Nếu refreshToken không có hoặc có nhưng hết hạn thì return null
+            if (account == null || account.TokenExpiry < DateTime.UtcNow) 
+                return BaseResponseDTO<LoginResponseDTO>.Fail("Unauthorized: Missing user context.", null, null, 403);
+
+            var response = await GenerateToken(account);
+
+            //Reset value 2 field RefreshToken và Expiry trước khi tạo mới
+            await _accountRepository.UpdateRefreshToken(
+                account.AccountId,
+                response.DataRes.RefreshToken,
+                response.DataRes.RefreshTokenExpiry
+            );
+
+            //Gọi GenerateToken để tạo accessToken và refreshToken mới
+            return response;
         }
 
         private async Task<BaseResponseDTO<LoginResponseDTO>> GenerateToken(Account account)
@@ -137,10 +170,10 @@ namespace Services.Implement
             var loginResponseDto = _mapper.Map<LoginResponseDTO>(account);
             loginResponseDto.AccessToken = accessToken;
             loginResponseDto.RefreshToken = await GenerateRefreshToken(account);
+            loginResponseDto.RefreshTokenExpiry = DateTime.UtcNow.AddMinutes(_jwtSetting.RefreshTokenValidMins);
 
             return BaseResponseDTO<LoginResponseDTO>.Success("Login successfully.", loginResponseDto, 200);
         }
-
 
         private async Task<string?> GenerateRefreshToken(Account account)
         {
@@ -155,5 +188,7 @@ namespace Services.Implement
 
             return newRefreshToken;
         }
+
+        
     }
 }

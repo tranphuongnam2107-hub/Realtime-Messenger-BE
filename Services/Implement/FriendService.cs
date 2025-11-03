@@ -38,7 +38,7 @@ namespace Services.Implement
             var loggedUserId = _userContextService.GetAccountIdFromToken();
 
             if (loggedUserId == null)
-                return BaseResponseDTO<FriendRequestsListDTO>.Fail("Unauthorized: Missing user context.", null, null, 500);
+                return BaseResponseDTO<FriendRequestsListDTO>.Fail("Unauthorized: Missing user context.", null, null, 403);
 
             var incomingFriendRequest = await _friendRepository.GetIncomingFriendRequests(loggedUserId);
             var outgoingFriendRequest = await _friendRepository.GetOutgoingFriendRequests(loggedUserId);
@@ -85,7 +85,7 @@ namespace Services.Implement
             var loggedUserId = _userContextService.GetAccountIdFromToken();
 
             if (loggedUserId == null)
-                return BaseResponseDTO<List<FriendListItemDTO>>.Fail("Unauthorized: Missing user context.", null, null, 500);
+                return BaseResponseDTO<List<FriendListItemDTO>>.Fail("Unauthorized: Missing user context.", null, null, 403);
 
             var loggedUser = await _accountRepository.GetAccountByAccountId(loggedUserId);
             if (loggedUser == null)

@@ -13,6 +13,7 @@ namespace Models.DTO.Response
         public string? AccessToken { get; set; }
         public int TokenExpiryIn { get; set; }
         public string? RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpiry { get; set; }
         public DateTime? LockedUntil { get; set; }
     }
 }
