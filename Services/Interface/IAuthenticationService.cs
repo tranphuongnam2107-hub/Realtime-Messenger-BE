@@ -12,6 +12,7 @@ namespace Services.Interface
     public interface IAuthenticationService
     {
         Task<BaseResponseDTO<LoginResponseDTO>?> Login(LoginRequestDTO request);
-        Task<BaseResponseDTO<LoginResponseDTO>?> Logout(string accountId);
+        Task<BaseResponseDTO<LoginResponseDTO>?> Logout();
+        Task<BaseResponseDTO<LoginResponseDTO>> ValidateRefreshToken(string? refreshToken);
     }
 }

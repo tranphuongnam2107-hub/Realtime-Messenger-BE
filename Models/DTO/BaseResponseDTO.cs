@@ -21,7 +21,7 @@ namespace Models.DTO
             Errors = errors;
         }
 
-        public static BaseResponseDTO<T> Success(string message, T data, int statusCode)
+        public static BaseResponseDTO<T> Success(string message, T? data, int statusCode)
         {
             return new BaseResponseDTO<T>(statusCode, message, data, null);
         }
